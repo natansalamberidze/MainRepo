@@ -1,5 +1,5 @@
 /*
-Tabulu veidošana.
+Tabulu veidoÅ¡ana.
 */
 CREATE table DZIMUMS_IM as (SELECT * from DZIMUMS);
 CREATE table KLIENTI_IM as (SELECT * from KLIENTI);
@@ -11,7 +11,7 @@ CREATE table PRECES_IM as (SELECT * from PRECES);
 CREATE table VEIKALI_IM as (SELECT * from VEIKALI);
 CREATE table PASUTIJUMI_IM as (SELECT * from PASUTIJUMI);
 /*
-P?c tabulas izveidošanas vajag ar? izveidot dimensijas.
+Pec tabulas izveidoÅ¡anas vajag ari izveidot dimensijas.
 */
 CREATE dimension DIM_VEIKALI_IM
 level L_PIL_IM is PILSETAS_IM.PILS_NOS
@@ -57,47 +57,47 @@ select DIMENSION_NAME
 from ALL_DIMENSIONS;
 
 /*
-P?rbaud?sim DB buferi
+Parbaudisim DB buferi
 */
 show parameter DB_BLOCK_SIZE;    
 show parameter DB_BLOCK_BUFFERS;
 /*
-P?rbaud?m atmi?as resursu, vai tas ir vai nav izdal?ts.(Bufera izveidošana)
+Parbaudim atminas resursu, vai tas ir vai nav izdalits.(Bufera izveidoÅ¡ana)
 */
 show PARAMETER INMEMORY_SIZE;
 /*
-Apskat?sim SGA maksim?lo apgabala izm?ru kuru ir iesp?jams iedod sist?mai un palielin?m atmi?u.
+Apskatisim SGA maksim?lo apgabala izmeru kuru ir iespejams iedod sistemai un palielinam atminu.
 */
 ALTER SYSTEM SET INMEMORY_SIZE=2G SCOPE=SPFILE;
 /*
-T?l?k ejam uz SQL Plus.Izsl?dzam datu b?zi un palaid?m to no jaunas ar komandam
+Talak ejam uz SQL Plus.Izsledzam datu bazi un palaidam to no jaunas ar komandam
 */
 shutdown immediate;
 Startup;
 /*
-M?s redzam k??du, jo no SGA_TARGET inicializ?cijas parametra iestat?juma tiek at?emts In-Memory apgabals, bet SGA_TARGET ir mazs. Vajag to palielin?t.
-Pirmk?rt vajadz?ja izsl?gt datub?zi un p?c tam jau palielin?t atmi?as vert?bu x2. T? bija autora k??da, t?p?c autoram bija j?doma k? to izlabot.
-Ar komandu izveidojam PFILE kur m?s var?sim nomain?t sga_target v?rt?bu.
+Mes redzam kludu, jo no SGA_TARGET inicializacijas parametra iestatijuma tiek ateemts In-Memory apgabals, bet SGA_TARGET ir mazs. Vajag to palielin?t.
+Pirmkart vajadzija izslegt datubazi un pec tam jau palielinat atminas vertibu x2. Ta bija autora kluda, tapec autoram bija jadoma ka to izlabot.
+Ar komandu izveidojam PFILE kur mes varesim nomainit sga_target vertibu.
 */
 CREATE PFILE = 'ORACLE_HOME_PATH' FROM SPFILE;
 /*
-Man? gad?jum?
+Mana gadijuma
 */
 CREATE PFILE = 'C:\BD_2023\dbs\custom_init.ora' FROM SPFILE
 /*
-Taj? fail? main?m sga_target v?rt?bu uz 4G un sagl?b?m.
+Taja faila mainam sga_target vertibu uz 4G un saglabam.
 */
 CREATE SPFILE FROM PFILE = 'ORACLE_HOME_PATH_TO_CREATED_PFILE';
 /*
-Man? gad?jum?
+Mana gadijuma
 */
 CREATE SPFILE FROM PFILE = 'C:\BD_2023\dbs\custom_init.ora';
 /*
-Datub?ze tika veiksm?gi start?ta un ir redzams, ka In-Memory area izm?rs ir 2GB. To var ar? p?rbaud?t ar vaic?jumu 
+Datubaze tika veiksmigi starteta un ir redzams, ka In-Memory area izmers ir 2GB. To var ari parbaudit ar vaicajumu.
 */
 SHOW PARAMETER INMEMORY_SIZE;
 /*
-Ir pien?cis laiks p?rvietot tabulas operat?vaj? atmi??.
+Ir pienacis laiks parvietot tabulas operativaja atmina.
 */
 ALTER TABLE pasutijumi_IM INMEMORY MEMCOMPRESS FOR CAPACITY LOW PRIORITY HIGH;
 ALTER TABLE dzimums_IM INMEMORY MEMCOMPRESS FOR CAPACITY LOW PRIORITY HIGH;
@@ -109,14 +109,12 @@ ALTER TABLE prec_nos_IM INMEMORY MEMCOMPRESS FOR CAPACITY LOW PRIORITY HIGH;
 ALTER TABLE preces_IM INMEMORY MEMCOMPRESS FOR CAPACITY LOW PRIORITY HIGH;
 ALTER TABLE veikali_IM INMEMORY MEMCOMPRESS FOR CAPACITY LOW PRIORITY HIGH;
 /*
-Rakstam vaic?jumus ori?in?laiem tabul?m un In-Memory. 
-*/
-/*
-Izpild?m vaic?jumu ar agreg?cijas funkciju:
+Rakstam vaicajumus originalaiem tabulam un In-Memory. 
+Izpildam vaicajumu ar agregacijas funkciju:
 */
 select /* +FULL(PASUTIJUMI_IM) NO_PARALLEL(PASUTIJUMI_IM)*/COUNT(*) from pasutijumi_im;
 /*
-Ir sasumm?ti visi ieraksti: Cena, Daudzums, Samaksa visiem veikaliem, visas pils?tas, katr? gad? no 2000-2023.
+Ir sasummeti visi ieraksti: Cena, Daudzums, Samaksa visiem veikaliem, visas pilsetas, katra gada no 2000-2023.
 */
 select l.gads_f, sum(pr.cena) as Preces_cenas_summa ,
 sum(p.pas_daudzums) as Summa, sum(p.pas_samaksats) as Daudzums
@@ -128,7 +126,7 @@ p.f_prec_id = pr.prec_id
 group by l.gads_f
 order by l.gads_f desc;
 /*
-1.Vaic?jums – atmi?as apgabala tabulai.
+1.Vaicajums â€“ atminas apgabala tabulai.
 */
 select l.gads_f, sum(pr.cena) as Preces_cenas_summa ,
 sum(p.pas_daudzums) as Summa, sum(p.pas_samaksats) as Daudzums
@@ -140,7 +138,7 @@ p.f_prec_id = pr.prec_id
 group by l.gads_f
 order by l.gads_f desc;
 /*
-Ir ieg?ta inform?cija par samaks?tu summu pas?t?jumiem un pas?t?juma daudzumu, pa veikaliem kur, veikala  nosaukums s?kas ar -Vu
+Ir ieguta inform?cija par samaksatu summu pasutijumiem un pasutijuma daudzumu, pa veikaliem kur, veikala  nosaukums sakas ar -Vu.
 */
 select veikala_nos, sum(pas_samaksats) as Summa
 from pasutijumi p, veikali v, pilsetas pils
@@ -150,7 +148,7 @@ AND v.veikala_nos LIKE 'Vu%'
 group by veikala_nos
 order by Summa desc;
 /*
-2.Vaic?jums – atmi?as apgabala tabulai.
+2.Vaicajums â€“ atminas apgabala tabulai.
 */
 select veikala_nos, sum(pas_samaksats) as Summa
 from pasutijumi_im p, veikali_im v, pilsetas_im pils
@@ -160,7 +158,7 @@ AND v.veikala_nos LIKE 'Vu%'
 group by veikala_nos
 order by Summa desc;
 /*
-Ir ieg?ta inform?cija par samaks?tu summu pas?t?jumiem, pa klientiem kur, klienta v?rds s?kas ar -Ma
+Ir ieguta informacija par samaksatu summu pasutijumiem, pa klientiem kur, klienta vards sakas ar -Ma.
 */
 select vards, sum(pas_samaksats) as Summa, sum(pas_samaksats) as Daudzums
 from pasutijumi p, klienti k
@@ -170,7 +168,7 @@ AND vards LIKE 'Ma%'
 group by vards
 order by Summa desc;
 /*
-3.Vaic?jums – atmi?as apgabala tabulai.
+3.Vaicajums â€“ atminas apgabala tabulai.
 */
 select vards, sum(pas_samaksats) as Summa, sum(pas_samaksats) as Daudzums
 from pasutijumi_im p, klienti_im k
@@ -180,7 +178,7 @@ AND vards LIKE 'Ma%'
 group by vards
 order by Summa desc;
 /*
-1.Materializ?tais skats
+1.Materializetais skats
 */
 create materialized view GADS_MS
 BUILD IMMEDIATE
@@ -199,11 +197,11 @@ analyze table laiks COMPUTE STATISTICS;
 analyze table preces COMPUTE STATISTICS;
 alter session set OPTIMIZER_MODE = ALL_ROWS;
 /*
-1 skatu ieliksim atmi?? ar komandu
+1 skatu ieliksim atmina ar komandu.
 */
 ALTER MATERIALIZED VIEW GADS_MS INMEMORY PRIORITY HIGH;
 /*
-2.Materializ?tais skats
+2.Materializetais skats.
 */
 create materialized view VEIKALS_MS
 BUILD IMMEDIATE
@@ -220,11 +218,11 @@ analyze table veikali COMPUTE STATISTICS;
 analyze table pilsetas COMPUTE STATISTICS;
 alter session set OPTIMIZER_MODE = ALL_ROWS;
 /*
-2 skatu ieliksim atmi?? ar komandu
+2 skatu ieliksim atmina ar komandu.
 */
 ALTER MATERIALIZED VIEW VEIKALS_MS INMEMORY PRIORITY HIGH;
 /*
-3.Materializ?tais skats
+3.Materializetais skats.
 */
 create materialized view VARDS_MS
 BUILD IMMEDIATE
@@ -240,9 +238,9 @@ analyze table pasutijumi COMPUTE STATISTICS;
 analyze table klienti COMPUTE STATISTICS;
 alter session set OPTIMIZER_MODE = ALL_ROWS;
 /*
-3 skatu ieliksim atmi?? ar komandu
+3 skatu ieliksim atmina ar komandu
 */
 ALTER MATERIALIZED VIEW VEIKALS_MS INMEMORY PRIORITY HIGH;
 /*
-Rezult?ti ir pozit?vi.
+Rezultati ir pozitivi.
 */
