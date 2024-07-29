@@ -1,5 +1,5 @@
 /*
-Vispirms veidojam rel?ciju tabulas.
+Vispirms veidojam relaciju tabulas.
 */
 CREATE TABLE Autors (
   autora_id NUMBER PRIMARY KEY,
@@ -16,7 +16,7 @@ CREATE TABLE Gramata (
   FOREIGN KEY (autora_id) REFERENCES Autors(autora_id)
 );
 /*
-P?c t?m veidojam objektu tipus un objektu-rel?ciju tabulas.
+Pec tam veidojam objektu tipus un objektu-relaciju tabulas.
 */
 CREATE OR REPLACE TYPE Autors_Type AS OBJECT (
   autora_id NUMBER,
@@ -38,7 +38,7 @@ CREATE OR REPLACE TYPE AutorsGramatas_Type AS OBJECT (autors Autors_Type,gramata
 
 CREATE TABLE AutorsGramatas OF AutorsGramatas_Type NESTED TABLE gramatas STORE AS GramatuKolekcijaStorage;
 /*
-Aizpild?m abu tipu tabulas.
+Aizpildam abu tipu tabulas.
 */
 DECLARE
   v_gramata_counter NUMBER := 1;
@@ -117,8 +117,8 @@ v_gramata_counter := v_gramata_counter + 1;
 END;
 /
 /*
-Realiz?j?m vaic?jumus gan rel?ciju datu b?zes variantam, gan rel?ciju – objektu datu b?zes variantam.
-Atrast vid?jo, minim?lo un maksim?lo gr?matu skaitu, ko ir rakst?juši autori no katras valsts.
+Realizejam vaicajumus gan relaciju datu bazes variantam, gan relaciju â€“ objektu datu bazes variantam.
+Atrast videjo, minimalo un maksimalo gramatu skaitu, ko ir rakstijuÅ¡i autori no katras valsts.
 */
 ALTER SYSTEM FLUSH SHARED_POOL;
 SET TIMING ON;
@@ -149,7 +149,7 @@ ORDER BY a.Autors.valsts;
 
 SET TIMING OFF;
 /*
-Izvad?t autorus ar visvair?k gr?mat?m un to kop?jo gr?matu skaitu.
+Izvadit autorus ar visvairak gramatam un to kopejo gramatu skaitu.
 */
 ALTER SYSTEM FLUSH SHARED_POOL;
 SET TIMING ON;
@@ -177,7 +177,7 @@ FETCH FIRST 5 ROWS ONLY;
 
 SET TIMING OFF;
 /*
-Atrast piecus autorus ar augst?ko vid?jo gr?matu skaitu katr? desmitgad?.
+Atrast piecus autorus ar augstako videjo gramatu skaitu katra desmitgada.
 */
 ALTER SYSTEM FLUSH SHARED_POOL;
 SET TIMING ON;
@@ -221,7 +221,7 @@ FETCH FIRST 5 ROWS ONLY;
 
 SET TIMING OFF;
 /*
-Izmantojot abas objektu tabulas, veidojam objektu skatu, kura objektiem defin?t divas MEMBER tipa objektu metodes.
+Izmantojot abas objektu tabulas, veidojam objektu skatu, kura objektiem definet divas MEMBER tipa objektu metodes.
 */
 CREATE OR REPLACE TYPE AutorsGramatas_Type AS OBJECT (
  autors Autors_Type,
@@ -258,7 +258,7 @@ SELECT ag.*,
        ag.get_avg_books_per_decade() AS avg_books_per_decade
 FROM AutorsGramatas ag;
 /*
-Vaic?jumi objektu skatiem.
+Vaicajumi objektu skatiem.
 */
 ALTER SYSTEM FLUSH SHARED_POOL;
 SET TIMING ON;
@@ -272,7 +272,7 @@ GROUP BY agv.autors.valsts
 ORDER BY agv.autors.valsts;
 SET TIMING OFF;
 /*
-2.vaic?jums
+2.vaicajums
 */
 ALTER SYSTEM FLUSH SHARED_POOL;
 SET TIMING ON;
@@ -287,7 +287,7 @@ ORDER BY TotalBookCount DESC
 FETCH FIRST 5 ROWS ONLY
 SET TIMING OFF;
 /*
-3.vaic?jums
+3.vaicajums
 */
 ALTER SYSTEM FLUSH SHARED_POOL;
 SET TIMING ON;
