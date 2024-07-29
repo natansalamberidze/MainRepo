@@ -1,5 +1,5 @@
 /*
-Divu savstarpeji saistitu pamattabulu ar 5 vai 6 kolonam definešana.
+Defining two interrelated base tables with 5 or 6 columns.
 */
 CREATE TABLE PD1_Clients (
     ClientID NUMBER PRIMARY KEY,
@@ -20,7 +20,7 @@ CREATE TABLE PD1_Orders (
     FOREIGN KEY (ClientID) REFERENCES PD1_Clients(ClientID)
 );
 /*
-Divu savstarpeji saistitu pamattabulu aizpildišana.
+Full fill information in the table.
 */
 DECLARE
     i NUMBER;
@@ -59,29 +59,29 @@ BEGIN
     COMMIT;
 END;
 /*
-Pilna tabulas skenešana.
+Full table scan.
 */
 SELECT * FROM PD1_Clients;
 SELECT * FROM PD1_Orders;
 /*
-Veidojam indeksus.
+Indexes creation.
 */
 CREATE INDEX idx_client_city ON PD1_Clients(City);
 CREATE INDEX idx_order_total ON PD1_Orders(TotalAmount);
 /*
-Indeksa diapazona skenešana.
+Index range scan.
 */
 SELECT /*+ INDEX(c idx_client_city) */ * FROM PD1_Clients c WHERE City BETWEEN 'A' AND 'M';
 SELECT * FROM PD1_Orders WHERE TotalAmount BETWEEN 100 AND 10000;
 /*
-Savienojuma (Joins) metodes. Ligzdotas Cilpas Savienojums(Nested Loops).
+Joins methods. Nested Loops.
 */
 SELECT /*+ USE_NL(c o) */ * FROM PD1_Clients c JOIN PD1_Orders o ON c.ClientID = o.ClientID;
 /*
-Heš Savienojums(Hash Join).
+Hash Join.
 */
 SELECT /*+ USE_HASH(c o) */ * FROM PD1_Clients c JOIN PD1_Orders o ON c.ClientID = o.ClientID;
 /*
-Š?irošanas un Sapludin?šanas Savienojums(Sort Merge Join).
+Sort Merge Join.
 */
 SELECT /*+ USE_MERGE(c o) */ * FROM PD1_Clients c JOIN PD1_Orders o ON c.ClientID = o
