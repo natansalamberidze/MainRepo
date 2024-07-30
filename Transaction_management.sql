@@ -8,7 +8,7 @@ CREATE TABLE Inventory (
 );
 
 INSERT INTO Inventory (ProductID, ProductName, Quantity) VALUES(1, 'T-krekls', 100);
-INSERT INTO Inventory (ProductID, ProductName, Quantity) VALUES(2, 'Džinsi', 50);
+INSERT INTO Inventory (ProductID, ProductName, Quantity) VALUES(2, 'DÅ¾insi', 50);
 /*
 "Serializable" insulation level tables and data.
 */
@@ -20,9 +20,9 @@ CREATE TABLE Noliktava (
 INSERT INTO Noliktava VALUES (1, 'Dators', 30);
 INSERT INTO Noliktava VALUES (2, 'Printeri', 15);
 /*
-Need to create multiple users and execute a transaction from each of them at the same time.
+Need to create multiple users and execute a transaction from each of them, at the same time.
 Two users are created, natans and natans2.
-Both users are given all necessary accesses.
+Both users are given all necessary access.
 */
 CREATE USER natans IDENTIFIED BY natans;
 GRANT CREATE SESSION TO new_user;
