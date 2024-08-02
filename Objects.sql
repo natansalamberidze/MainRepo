@@ -1,5 +1,5 @@
 /*
-Vispirms veidojam relaciju tabulas.
+Relation table creation.
 */
 CREATE TABLE Autors (
   autora_id NUMBER PRIMARY KEY,
@@ -16,7 +16,7 @@ CREATE TABLE Gramata (
   FOREIGN KEY (autora_id) REFERENCES Autors(autora_id)
 );
 /*
-Pec tam veidojam objektu tipus un objektu-relaciju tabulas.
+Object types and object-relation tables creation.
 */
 CREATE OR REPLACE TYPE Autors_Type AS OBJECT (
   autora_id NUMBER,
@@ -38,7 +38,7 @@ CREATE OR REPLACE TYPE AutorsGramatas_Type AS OBJECT (autors Autors_Type,gramata
 
 CREATE TABLE AutorsGramatas OF AutorsGramatas_Type NESTED TABLE gramatas STORE AS GramatuKolekcijaStorage;
 /*
-Aizpildam abu tipu tabulas.
+Completing both types of table.
 */
 DECLARE
   v_gramata_counter NUMBER := 1;
@@ -117,8 +117,8 @@ v_gramata_counter := v_gramata_counter + 1;
 END;
 /
 /*
-Realizejam vaicajumus gan relaciju datu bazes variantam, gan relaciju – objektu datu bazes variantam.
-Atrast videjo, minimalo un maksimalo gramatu skaitu, ko ir rakstijuši autori no katras valsts.
+We implement queries for both the relational database variant and the relational-object database variant.
+Find the average, minimum and maximum number of grammars written by authors from each country.
 */
 ALTER SYSTEM FLUSH SHARED_POOL;
 SET TIMING ON;
@@ -149,7 +149,7 @@ ORDER BY a.Autors.valsts;
 
 SET TIMING OFF;
 /*
-Izvadit autorus ar visvairak gramatam un to kopejo gramatu skaitu.
+Query - List the authors with the most books and their total number of books.
 */
 ALTER SYSTEM FLUSH SHARED_POOL;
 SET TIMING ON;
@@ -177,7 +177,7 @@ FETCH FIRST 5 ROWS ONLY;
 
 SET TIMING OFF;
 /*
-Atrast piecus autorus ar augstako videjo gramatu skaitu katra desmitgada.
+Query - Find the five authors with the highest average number of grammars in each decade.
 */
 ALTER SYSTEM FLUSH SHARED_POOL;
 SET TIMING ON;
@@ -221,7 +221,7 @@ FETCH FIRST 5 ROWS ONLY;
 
 SET TIMING OFF;
 /*
-Izmantojot abas objektu tabulas, veidojam objektu skatu, kura objektiem definet divas MEMBER tipa objektu metodes.
+Using the two object tables, we are creating an object view that defines two object methods of type MEMBER for the objects.
 */
 CREATE OR REPLACE TYPE AutorsGramatas_Type AS OBJECT (
  autors Autors_Type,
@@ -258,7 +258,7 @@ SELECT ag.*,
        ag.get_avg_books_per_decade() AS avg_books_per_decade
 FROM AutorsGramatas ag;
 /*
-Vaicajumi objektu skatiem.
+Queries for views of objects.
 */
 ALTER SYSTEM FLUSH SHARED_POOL;
 SET TIMING ON;
@@ -272,7 +272,7 @@ GROUP BY agv.autors.valsts
 ORDER BY agv.autors.valsts;
 SET TIMING OFF;
 /*
-2.vaicajums
+Query 2.
 */
 ALTER SYSTEM FLUSH SHARED_POOL;
 SET TIMING ON;
@@ -287,7 +287,7 @@ ORDER BY TotalBookCount DESC
 FETCH FIRST 5 ROWS ONLY
 SET TIMING OFF;
 /*
-3.vaicajums
+Query 3.
 */
 ALTER SYSTEM FLUSH SHARED_POOL;
 SET TIMING ON;
