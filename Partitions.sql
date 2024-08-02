@@ -1,5 +1,5 @@
 /*
-Veidojam tabultelpas(tablespace).
+Tablespaces creation.
 */
 CREATE TABLESPACE tablespace_1
   DATAFILE 'df_1.dbf' SIZE 100M
@@ -13,7 +13,7 @@ CREATE TABLESPACE tablespace_3
   DATAFILE 'df_3.dbf' SIZE 100M
   EXTENT MANAGEMENT LOCAL UNIFORM SIZE 1M;
 /*
-Tabulu veidoöana.
+Creating tables.
 */
 CREATE TABLE customer(
     id NUMBER,
@@ -30,7 +30,7 @@ CREATE TABLE payments(
     amount NUMBER
 )tablespace tablespace_2;
 /*
-Tabulu aizpild?öana.
+Tabulu aizpild?≈°ana.
 */
 DECLARE
     i NUMBER;
@@ -38,7 +38,7 @@ DECLARE
     TYPE surname_array IS VARRAY(15) OF VARCHAR2(50);
 
     first_names name_array := name_array('J?nis', 'P?teris', 'M?ris', 'Andris', '?ris', 'Art?rs', 'Miks', 'Lauris', 'Ren?rs', 'Raimonds', 'Kristaps', 'Edgars', 'Juris', 'Rihards', 'Andris');
-    surnames surname_array := surname_array('B?rzi?ö', 'Liepi?ö', 'Ozoli?ö', 'Saul?tis', 'Kalni?ö', '??ni?ö', 'S?j?js', 'Pried?tis', 'V?tols', 'Liepa', 'Gulbis', 'Kr?mi?ö', 'Muiûnieks', 'L?sis', 'ämits');
+    surnames surname_array := surname_array('B?rzi?≈°', 'Liepi?≈°', 'Ozoli?≈°', 'Saul?tis', 'Kalni?≈°', '??ni?≈°', 'S?j?js', 'Pried?tis', 'V?tols', 'Liepa', 'Gulbis', 'Kr?mi?≈°', 'Mui≈ænieks', 'L?sis', '≈†mits');
 BEGIN
     FOR i IN 1..1000 LOOP
         INSERT INTO customer (id, name, age, phone_number)
@@ -61,7 +61,7 @@ BEGIN
     COMMIT;
 END;
 /*
-Defin?t tabulas ar:  diapazona sadal?juma part?cij?m, interv?la sadal?juma part?cij?m, heö funkcijas sadal?juma part?cij?m, saraksta sadal?juma part?cij?m un atsauces sadal?juma part?cij?m.
+Defin?t tabulas ar:  diapazona sadal?juma part?cij?m, interv?la sadal?juma part?cij?m, he≈° funkcijas sadal?juma part?cij?m, saraksta sadal?juma part?cij?m un atsauces sadal?juma part?cij?m.
 */
 CREATE TABLE payments_range_part
 tablespace tablespace_3
@@ -148,7 +148,7 @@ CREATE INDEX idx_amount_global_inetrval ON payments_interval_part(amount);
 
 /
 
-CREATE INDEX idx_amount_local_hash ON payments_hash_part(amount) LOCAL; -- Heö
+CREATE INDEX idx_amount_local_hash ON payments_hash_part(amount) LOCAL; -- He≈°
 
 drop index idx_amount_local_hash;
 
