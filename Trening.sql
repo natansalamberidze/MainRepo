@@ -1,5 +1,5 @@
 /*
-Veidojam nepieciešamus datu tipus.
+Creating the necessary data types.
 */
 CREATE OR REPLACE TYPE pavari_type AS OBJECT(
 pavara_id NUMBER,
@@ -33,7 +33,7 @@ CREATE OR REPLACE TYPE restorans_type AS OBJECT (
     edieni_list edienii_kol_ref_type
 );
 /*
-Veidojam tabulas.
+Tables creation.
 */
 CREATE TABLE pavari OF pavari_type;
 CREATE TABLE edieni OF edieni_type;
@@ -41,7 +41,7 @@ CREATE TABLE restorani OF restorans_type
 nested table pavari_list store as pavari_ref_list
 nested table edieni_list store as edieini_ref_list;
 /*
-Aizpild?m ?dienu un pavaru tabulas.
+Fill in the food and cooking tables.
 */
 INSERT INTO edieni VALUES (1, 'Pizza Margherita', 10);
 INSERT INTO edieni VALUES (2, 'Chicken', 15);
@@ -63,22 +63,22 @@ INSERT INTO edieni VALUES (16, 'Apple Pie', 7);
 
 INSERT INTO pavari VALUES (1, 'J?nis', 'Ozols', 28);
 INSERT INTO pavari VALUES (2, 'Inese', 'Liepi?a', 32);
-INSERT INTO pavari VALUES (3, 'M?ris', 'Kalni?š', 25);
+INSERT INTO pavari VALUES (3, 'M?ris', 'Kalni?Å¡', 25);
 INSERT INTO pavari VALUES (4, 'L?ga', 'Lapi?a', 30);
-INSERT INTO pavari VALUES (5, 'Andris', 'B?rzi?š', 34);
+INSERT INTO pavari VALUES (5, 'Andris', 'B?rzi?Å¡', 34);
 INSERT INTO pavari VALUES (6, 'Zane', 'Priede', 27);
 INSERT INTO pavari VALUES (7, 'Agnese', 'Saul?te', 29);
-INSERT INTO pavari VALUES (8, 'Juris', '?boli?š', 33);
+INSERT INTO pavari VALUES (8, 'Juris', '?boli?Å¡', 33);
 INSERT INTO pavari VALUES (9, 'Laima', 'Ozola', 26);
 INSERT INTO pavari VALUES (10, 'K?rlis', 'Liepa', 31);
 INSERT INTO pavari VALUES (11, 'Dace', 'P?tersone', 35);
-INSERT INTO pavari VALUES (12, 'Guntis', 'B?rzi?š', 28);
+INSERT INTO pavari VALUES (12, 'Guntis', 'B?rzi?Å¡', 28);
 INSERT INTO pavari VALUES (13, 'Ilze', 'Kalni?a', 30);
-INSERT INTO pavari VALUES (14, 'Edgars', 'Lapi?š', 32);
+INSERT INTO pavari VALUES (14, 'Edgars', 'Lapi?Å¡', 32);
 INSERT INTO pavari VALUES (15, 'Daina', 'Salmi?a', 27);
 INSERT INTO pavari VALUES (16, 'Art?rs', 'Priedis', 29);
 /*
-Aizpildam restor?nu tabulas.
+Fill in the restaurant tables.
 */
 INSERT INTO restorani VALUES ('Alfa Restor?ns', 'Latvija', 
     pavari_kol_ref_type(
@@ -145,7 +145,7 @@ INSERT INTO restorani VALUES ('Fita Restor?ns', 'Igaunija',
     )
 );
 /*
-Kada ir vid?ja cena ?dienam restoran? ‘Fita Restor?ns’?
+What is the average price of a meal in a restaurant? 'Fita Restaurant'
 */
 select avg(deref(ediena_ref).ediena_cena)
 FROM TABLE 
@@ -156,7 +156,7 @@ FROM TABLE
     ) e
 ;
 /*
-Cik pavaru ir restor?n? ‘Fita Restor?ns’?
+How many cooks are in the restaurant? ('Fita Restaurant')
 */
 select count(*)
 FROM TABLE 
@@ -167,7 +167,7 @@ FROM TABLE
     ) e
 ;
 /*
-Kads ir uzv?rds vec?kaj?m pavaram restor?na ‘Fita Restor?ns’ ?
+What is the surname of the restaurant's oldest cook? (â€˜Fita Restor?nsâ€™)
 */
 select deref(pavara_ref).uzvards, deref(pavara_ref).vecums
 FROM TABLE
@@ -179,7 +179,7 @@ WHERE restorana_nos = 'Fita Restor?ns'
 order by deref(pavara_ref).vecums desc
 FETCH FIRST 1 ROWS ONLY;
 /*
-Izv?l?ties restor?nu ar visliel?ku ?dienu skaitu.
+Choose the restaurant with the most number of dishes.
 */
 select r.restorana_nos, r.valsts, Count(Value(b))
 from restorani r, Table(r.edieni_list) b
@@ -187,7 +187,7 @@ group by r.restorana_nos, r.valsts
 order by Count(Value(b)) desc
 FETCH FIRST 1 ROWS ONLY;
 /*
-Izv?lieties darg?ko ?dienu starp visiem restor?niem.
+Choose the best food among all restaurants.
 */
 select r.restorana_nos, r.valsts, DEREF(Value(b).ediena_ref).ediena_nos , DEREF(Value(b).ediena_ref).ediena_cena
 from restorani r, Table(r.edieni_list) b
