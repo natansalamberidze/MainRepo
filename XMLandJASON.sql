@@ -1,5 +1,5 @@
 /*
-Map? kur tiek glab?ti XML un XSD faili tika re?istr?ta k? direktorij?.
+The folder where the XML and XSD files are stored was registered as a directory.
 */
 CREATE OR REPLACE DIRECTORY XML_SCHEMA_DIR AS 'C:\Uni\XML';
 
@@ -30,11 +30,11 @@ BEGIN
     ); 
 END;
 /*
-P?rbaude.
+Let's check.
 */
 SELECT * FROM DBA_XML_SCHEMAS where schema_url like '%example%';
 /*
-Tika izveidotas divas bin?r?s glab?šanas XMLType tipa tabulas ar sh?mas izmantošanu.
+Two binary storage tables of type XMLType were created using the schema.
 */
 CREATE TABLE XML_BIN_TAB_BIBLIOTEKA of XMLType
     XMLSCHEMA "http://example.com/library.xsd"
@@ -44,13 +44,13 @@ CREATE TABLE XML_BIN_TAB_PROJEKTI of XMLType
     XMLSCHEMA "http://example.com/projects.xsd"
     ELEMENT "uznemums";
 /*
-P?rbaude.
+Let's check.
 */
 select a.TABLE_NAME, a.XMLSCHEMA, a.STORAGE_TYPE
 from USER_XML_TABLES a
 where TABLE_NAME LIKE 'XML_BIN_TAB%';
 /*
-Lai ievietot XML failus tabul?s tika izveidota proced?ra.
+A procedure was created to insert XML files into the tables.
 */
 create or replace NONEDITIONABLE PROCEDURE ievietosanaXML_Kolonna( 
   p_dir IN VARCHAR2,
@@ -77,7 +77,7 @@ BEGIN
 END;
 
 /*
-Proced?ras palaišana.
+Running the procedure.
 */
 truncate table XML_BIN_TAB_BIBLIOTEKA; 
 truncate table xml_bin_tab_projekti;
@@ -87,12 +87,12 @@ BEGIN
   ievietosanaXML_Kolonna('XML_SCHEMA_DIR', 'projects.xml', 'XML_BIN_TAB_PROJEKTI ');
 END;
 /*
-P?rbaude
+Let's check.
 */
 select value(a) from XML_BIN_TAB_BIBLIOTEKA a;
 select value(a) from xml_bin_tab_projekti a;
 /*
-No XML fail?, kas satur?ja inform?ciju par gr?mat?m ar XMLTable vaic?juma pal?dz?bu tika izg?ta inform?cija par gr?mat?m, kas ir latviešu valod? un kuram v?rt?jums ir liel?k par 4.5
+From the XML file containing the information about the books, an XMLTable query was used to retrieve the information about the books that are in Latvian and have a score greater than 4.5
 */
 SELECT
   x.id,
@@ -117,7 +117,7 @@ FROM
 WHERE
 x.vertejums > 4.5 AND x.izdevuma_valoda = 'Latviesu';
 /*
-No XML fail?, kas satur?ja inform?ciju par uz??muma projektiem ar XMLTable vaic?juma pal?dz?bu tika izg?ta inform?cija par projektu ilgumu gados un m?nešos.
+From the XML file containing information about the company's projects, the XMLTable query retrieved information about the duration of the projects in years and months.
 */
 SELECT
   x.id,
@@ -138,7 +138,7 @@ FROM
       beigas DATE PATH 'beigas'
    ) x;
 /*
-No XML fail?, kas satur?ja inform?ciju par gr?mat?m ar XMLQuery vaic?juma pal?dz?bu tika izg?ta inform?cija par gr?matu izdošanas gadu un v?rt?jumiem.
+From the XML file containing the information about the books, an XMLQuery was used to retrieve information about the year of publication and the ratings of the books.
 */
 SELECT XMLQuery(
   'for $gramata in /biblioteka/gramata
@@ -153,7 +153,7 @@ SELECT XMLQuery(
 ) AS REZULTATS
 FROM XML_BIN_TAB_BIBLIOTEKA;
 /*
-No XML fail?, kas satur?ja inform?ciju par uz??muma projektiem ar XMLQuery vaic?juma pal?dz?bu tika izg?ta inform?cija par darbiniekiem, kas piedal?j?s jebkur? projekt?.
+From the XML file containing information about the company's projects, an XMLQuery was used to retrieve information about the employees who participated in any project.
 */
 SELECT
     XMLQuery(
@@ -163,18 +163,18 @@ SELECT
     ) as darbinieki
 FROM xml_bin_tab_projekti;
 /*
-No XML fail?, kas satur?ja inform?ciju par gr?mat?m ar XMLCast vaic?juma pal?dz?bu tika izg?ta inform?cija par gr?matu vid?jo v?rt?jumu.
+From the XML file containing the book information, the average rating of the books was extracted using an XMLCast query.
 */
 SELECT AVG(XMLCast(XMLQuery('sum(/biblioteka/gramata/izdevuma_apskats/vertejums) div count (/biblioteka/gramata)' 
     PASSING OBJECT_VALUE RETURNING CONTENT) AS NUMBER)) AS AVG_VERTEJUMS
 FROM XML_BIN_TAB_BIBLIOTEKA;
 /*
-No XML fail?, kas satur?ja inform?ciju par uz??muma projektiem ar XMLCast vaic?juma pal?dz?bu tika izg?ta inform?cija par visiem projekta vad?tajiem.
+An XMLCast query was used to retrieve information about all project managers from an XML file containing information about the company's projects.
 */
 SELECT XMLCast(XMLQuery('/uznemums/projekts/vaditajs' PASSING OBJECT_VALUE RETURNING CONTENT) AS VARCHAR2(100)) AS VADITAJA_VARDS 
 FROM xml_bin_tab_projekti;
 /*
-XML datu par uz??muma projektu izvad?šana rel?ciju datu veid?.
+XML output of company project data as relational data.
 */
 WITH
 A AS (
@@ -206,8 +206,8 @@ SELECT
   DarbinieksID2
 FROM A;
 /*
-Rel?ciju datu izvad?šana XML datu form?t?(rel?ciju datu transform?šana XML datu form?t?).
-Tabulas, kas satur?s rel?ciju datus par uz??muma projektiem, veidošana.
+Output of relational data in XML data format (transformation of relational data into XML data format).
+Creation of a table containing relational data for company projects.
 */
 CREATE TABLE PROJEKTI_R(
  PROJEKTS_ID      VARCHAR2(20),
@@ -220,12 +220,12 @@ CREATE TABLE PROJEKTI_R(
  DARBINIEKS_AMATS VARCHAR2(50)
 );
 /*
-Datu ievade tabul?.
+Enter data into a table.
 */
 INSERT INTO PROJEKTI_R VALUES('P1001', 'Modernizacija', 'Laura Abolina', TO_DATE('2022-03-01', 'YYYY-MM-DD'), TO_DATE('2022-12-31', 'YYYY-MM-DD'), '1003', 'Maris Ozols', 'Programmetajs'); 
 INSERT INTO PROJEKTI_R VALUES('P1001', 'Modernizacija', 'Laura Abolina', TO_DATE('2022-03-01', 'YYYY-MM-DD'), TO_DATE('2022-12-31', 'YYYY-MM-DD'), '1004', 'Liene Pumpure', 'Testetaja');
 /*
-XML datu ieg?šana.
+XML data extraction.
 */
 SELECT
   XMLSERIALIZE( 
@@ -254,7 +254,7 @@ SELECT
  ) AS XML
 FROM PROJEKTI_R a;
 /*
-Tabulu izveidošana JSON datu glab?šanai(tabulas defin?šana, datu ievade).
+Creating tables to store JSON data type. (table definition, data input)
 */
 create table j_biblioteka
  (id          VARCHAR2 (32) NOT NULL PRIMARY KEY,
@@ -302,7 +302,7 @@ create table j_projekti
        {
 */
 /*
-JSON_TABLE izmantošana.
+Using JSON_TABLE.
 */
 SELECT jt.nosaukums, jt.autors, jt.izdevuma_valoda, jt.vertejums 
 FROM j_biblioteka a
@@ -319,7 +319,7 @@ CROSS JOIN JSON_TABLE(
 WHERE jt.izdevuma_valoda = 'Latviesu'
   AND jt.vertejums > 4.5;
 /*
-JSON_QUERY izmantošana.
+Using JSON_QUERY.
 */
 SELECT JSON_QUERY (po_document,
                        '$.izdosanas_gads' WITH WRAPPER) as gads,
@@ -327,7 +327,7 @@ SELECT JSON_QUERY (po_document,
                        '$.izdevuma_apskats.vertejums' WITH WRAPPER) as vert
 FROM j_biblioteka;
 /*
-JSON_VALUE izmantošana.
+Using JSON_VALUE.
 */
 SELECT JSON_VALUE (po_document,
                        '$[3].izdevuma apskats.vertejums') as gads
