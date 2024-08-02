@@ -30,7 +30,7 @@ CREATE TABLE payments(
     amount NUMBER
 )tablespace tablespace_2;
 /*
-Tabulu aizpild?šana.
+Tables filling.
 */
 DECLARE
     i NUMBER;
@@ -61,7 +61,7 @@ BEGIN
     COMMIT;
 END;
 /*
-Defin?t tabulas ar:  diapazona sadal?juma part?cij?m, interv?la sadal?juma part?cij?m, heš funkcijas sadal?juma part?cij?m, saraksta sadal?juma part?cij?m un atsauces sadal?juma part?cij?m.
+Define tables with: range partition, interval partition, hash function partition, list partition and reference partition.
 */
 CREATE TABLE payments_range_part
 tablespace tablespace_3
@@ -118,7 +118,7 @@ partition by reference (payment_cust_fk)
 ENABLE ROW MOVEMENT
 as select * from payments;
 /*
-3 tipveida vaic?jumi.
+3 types of queries.
 */
 select AVG(Amount) from payments; --agreg?ts
 
@@ -126,11 +126,11 @@ select * from payments where amount < 155; -- ~15%
 
 select * from payments where amount > 990; -- ~1%
 /*
-Nesadal?tai tabulai un sadal?t?m tabul?m veidojam lok?los un glob?los indeksus.
+For the non-distributed table and the distributed tables we create local and global indices.
 */
 CREATE INDEX idx_amount_global ON payments(amount); -- Indekss nesadal?tai tabulai.
 /*
-Indeksi sadal?tam tabulam.
+Indexes for the distributed table.
 */
 CREATE INDEX idx_amount_local_partition_1 ON payments_range_part(amount)LOCAL; -- Diapazonu
 
