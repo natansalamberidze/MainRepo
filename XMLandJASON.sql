@@ -267,7 +267,7 @@ create table j_projekti
   date_loaded TIMESTAMP (6) WITH TIME ZONE,
   po_document VARCHAR2 (23767)
   CONSTRAINT ensure_json_projekti CHECK (po_document is json));
-/*
+
    insert into j_biblioteka values (SYS_GUID(), CURRENT_DATE, '
    [
   {
@@ -283,8 +283,8 @@ create table j_projekti
     }
    },
    {
-*/
-/*
+
+
     insert into j_projekti values (SYS_GUID(), CURRENT_DATE, '
     [
    {
@@ -300,7 +300,7 @@ create table j_projekti
         "amats": "Programmetajs"
        },
        {
-*/
+
 /*
 Using JSON_TABLE.
 */
