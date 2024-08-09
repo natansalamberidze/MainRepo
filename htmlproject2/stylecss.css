@@ -1,0 +1,114 @@
+body {
+    font: 10pt Arial, Helvetica, sans-serif;
+    background: #1F2833;
+    margin: 0;
+}
+.header {
+    background: #0B0C10;
+    font-size: 14pt;
+    display: flex;
+    font-weight: bold;
+    padding: 0 3%;
+    justify-content: space-between;
+    align-items:center;
+    padding-right: 50px;
+}
+.logo{
+   width: 80px;
+}
+.lang-choice{
+   padding: 10px 0;
+}
+.lang-choice li{
+   display: inline-block;
+   margin: 0 10px;
+}
+.lang-choice li a{
+   color: #45A29E;
+   text-decoration: none;
+}
+.lang-choice li i {
+	color: #66FCF1;
+	transform: scale(1.2, 1.2);
+	margin-left: 15px;
+}
+.content{
+   display: flex;
+   margin-top: 20px;
+   text-align: left;
+   color: white;
+}
+.stretch  {
+   display: inline-block;
+   margin: 0 40px;
+}
+
+.contentb{
+   display: flex;
+   justify-content: center;
+   padding-left: 428px;
+}
+.contentb ul li{
+   display: inline-block;
+   margin: 0 30px;
+}
+
+.contentforfile{
+   background: #1F2833;
+   border-color: #45A29E;
+   border-style: solid;
+   border-radius: 50px;
+   height: 300px;
+   color:white;
+   width: 300px;
+   margin-left: 100px;
+   align-items: center;
+   display:flex;
+   justify-content: right;
+   border-width: 2px;
+}
+.contentforfoto{
+   background: #1F2833;
+   color:white;
+   margin-left: 100px;
+   margin-bottom: 5px;
+}
+.content form div{
+   margin-bottom: 10px;
+}
+.things{
+   display: inline-block;
+   margin: 0 40px;
+}
+.things div input,label{
+   display: block;
+}
+.things div input{
+   background: #1F2833;
+   border-color: #45A29E;
+   border-style: solid;
+   border-radius: 7px;
+   height: 40px;
+   color:white;
+   padding-left: 20px;
+   width: 350px;
+}
+.content form div input:focus{
+   outline: none;
+   border-color: #66FCF1;
+}
+.content form button{
+   color: white;
+   background: #1F2833;
+   border-color: #45A29E;
+   border-width: 2px;
+   border-style:solid;
+   border-radius: 7px;
+   padding: 10px 15px;
+   margin-top: 10px;
+   cursor: pointer;
+   width: 120px;
+}
+.content form button:hover{
+   border-color: #66FCF1;
+}
