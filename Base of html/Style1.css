@@ -1,0 +1,47 @@
+h3 {
+  color: red;
+}
+
+[href$=".com"] {
+  background-image: linear-gradient(to right,
+      black 35%,
+      red 33%,
+      red 66%,
+      yellow 66%);
+}
+
+[alt*="Long" i] {
+  border: 10px solid rgb(100, 237, 123);
+}
+
+blockquote p {
+  color: darkred;
+}
+
+section b {
+  color: pink;
+}
+
+body {
+  background-color: bisque;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.img2 {
+  /* transform: translateX(500px); */
+  /* transform: translatey(50px); */
+  transform: translate(400px, -110px);
+  /* transform: scaleX(1); */
+  /* transform: scaley(2); */
+  /* transform: scale(1, 2); */
+  /* transform: rotate(0.75turn); */
+  /* transform: skew(30deg, 20deg); */
+
+
+  /* translate: 30px 50px; */
+  /* scale: 2 -1; */
+  /* rotate: 135deg; */
+}

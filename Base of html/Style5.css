@@ -1,0 +1,287 @@
+.fonts {
+  position: absolute;
+  left: 40%;
+  font-size: 50px;
+  font-weight: 900;
+  padding: 30px 30px 30px 30px;
+  box-shadow: 0 0 50px 50px rgb(247, 18, 1) inset, 0 0 50px 50px rgb(40, 142, 238);
+  border-radius: 15%;
+  color: rgba(9, 247, 28, 0.5);
+  background-color: rgb(13, 68, 11);
+}
+
+.box-linear {
+  position: relative;
+  top: 100px;
+  left: 50px;
+  width: 200px;
+  height: 200px;
+  outline: 5px dashed orange;
+  outline-offset: -25px;
+  border-style: solid;
+  border-width: 5px;
+  border-color: aqua;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: -5px 10px 5px;
+  margin-bottom: 20px;
+  background-image: linear-gradient(0.75turn, indianred, cornflowerblue, palegreen);
+}
+
+.box-radial {
+  position: relative;
+  left: 300px;
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+  border-top-style: solid;
+  border-bottom-style: dashed;
+  border-width: 6px;
+  border-color: blueviolet;
+  border-radius: 15px;
+  box-shadow: -5px 10px 5px rgb(4, 158, 38);
+  background-image: radial-gradient(slateblue, darkorange);
+}
+
+.box-conic {
+  position: absolute;
+  top: 290px;
+  left: 600px;
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: darkred;
+  border-width: 20px 4px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-image: conic-gradient(deepskyblue, lightpink, palegreen);
+}
+
+.box-custom {
+  position: absolute;
+  top: 425px;
+  left: 900px;
+  width: 200px;
+  height: 200px;
+  min-width: 200px;
+  box-sizing: border-box;
+  border-inline: 10px solid deepskyblue;
+  border-top: 10px solid deepskyblue;
+  border-bottom: 10px dashed deepskyblue;
+  background-image: linear-gradient(rgb(227, 252, 7) 40%,
+      cornflowerblue 40% 50%,
+      lightgreen 70%);
+}
+
+.box-custom2 {
+  position: absolute;
+  top: 325px;
+  left: 1200px;
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+  background-color: darksalmon;
+  border-radius: 0 35px 80% 30px;
+}
+
+/* https://9elements.github.io/fancy-border-radius/ --Rounding generator
+(To simplify the  creative work)*/
+
+body {
+  background-color: bisque;
+}
+
+[alt*="Angry" i] {
+  margin-top: 30px;
+  /* filter: blur(10px); */
+  /* filter: contrast(200); */
+  /* filter: brightness(0.75); */
+  /* filter: drop-shadow(15px 15px 15px red); 
+  it used to make a shadow to the object on the picture with transparency */
+  /* filter: grayscale(1); */
+  /* filter: hue-rotate(45deg); */
+  /* filter: invert(1); */
+  /* filter: opacity(0); */
+  /* filter: sepia(1); */
+  /* filter: saturate(100) */
+}
+
+.box1,
+.box2 {
+  width: 100px;
+  height: 100px;
+}
+
+.inner1,
+.inner2 {
+  width: 100px;
+  height: 100px;
+}
+
+.box1 {
+  background-color: lightskyblue;
+  position: relative;
+  z-index: 100;
+}
+
+.inner1 {
+  background-color: lightgreen;
+  position: relative;
+  top: 10px;
+  left: 80px;
+}
+
+.box2 {
+  background-color: lightcoral;
+  position: relative;
+  z-index: 200;
+}
+
+.inner2 {
+  background-color: lightseagreen;
+  position: absolute;
+  top: -30px;
+  left: 88px;
+}
+
+h1 {
+  font-size: 70px;
+}
+
+h1 span {
+  font-size: 0.5em;
+  /* Unit of measurement (em) works with any properties */
+}
+
+.flex-container {
+  gap: 10px;
+  padding: 10px;
+  background-color: lightskyblue;
+  display: flex;
+}
+
+.flex-element {
+  background-color: lightgreen;
+  padding: 10px;
+  flex-basis: 50px;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-column-reverse {
+  flex-direction: column-reverse;
+}
+
+.flex-elem {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  background-color: lightgreen;
+  /* flex-basis: 50px; */
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* flex-wrap: wrap-reverse used for reverse flex-wrap elements*/
+
+.wide {
+  flex-grow: 1;
+  /*Automatic stretching
+    (0-defaultProhibits the element from being automatically 
+    stretched.)*/
+}
+
+.flex-container1 {
+  gap: 10px;
+  height: 400px;
+  padding: 10px;
+  background-color: rgb(10, 34, 143);
+  display: flex;
+}
+
+.flex-element1 {
+  width: 300px;
+  height: 100px;
+  padding: 10px;
+  background-color: rgb(22, 165, 201);
+  /* flex-shrink: 5; */
+}
+
+.narrow {
+  flex-shrink: 1;
+  /*Compression parameter. The element will be
+    compressing when it necessary(1-default)*/
+  flex: 0 0 50%;
+  /* flex=flex-grow, flex-shrink, flex-basis */
+}
+
+.order-last {
+  order: 1;
+}
+
+.flex-element2 {
+  width: 300px;
+  height: 200px;
+  background-color: aquamarine;
+  flex: 0 1 auto;
+}
+
+.fixed-size {
+  flex: 0 1 50%;
+  order: -1;
+}
+
+.justify {
+  /* justify-content: flex-end; */
+  /* justify-content: center; */
+  /* justify-content: space-between; */
+  justify-content: space-around;
+  /* justify-content: space-evenly; */
+  /* justify-content: flex-start; */
+}
+
+.align-item {
+  height: 300px;
+  /* align-item: strach is default value */
+  /* align-items: start; */
+  /* align-items: flex-end; */
+  /* align-items: center; */
+  /* align-items: baseline; */
+}
+
+
+.flex-elementa {
+  width: 200px;
+  height: 40px;
+  background-color: lightgreen;
+}
+
+.align-content {
+  height: 300px;
+  gap: 50px 50px;
+  /* align-content: stretch; */
+  /* align-content: flex-start; */
+  /* align-content: flex-end; */
+  /* align-content: center; */
+  /* align-content: space-between; */
+  /* align-content: space-around ; */
+  /* align-content: space-evenly; */
+}
+
+.flex-container::before {
+  content: "🙏";
+}
+
+.flex-container::after {
+  content: "🙌";
+}
+

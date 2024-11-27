@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="./Style2.css" <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part2</title>
+
+  <link rel="website icon" type="jpg" href="Images/html.jpg">
+  <h1>
+    <p style="color:red">
+      Forms and Input fields
+    </p>
+    <style>
+      p {
+        color: blue !important;
+      }
+    </style>
+  </h1>
+</head>
+
+<body>
+  <b>Example of iframe</b><br />
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d17409.673145366567!2d24.115980279272474!3d56.94521797218138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2slv!4v1731496931819!5m2!1sen!2slv"
+    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"></iframe><br />
+  <b>Work with the tables</b><br />
+  <table>
+    <caption>The name of a table</caption>
+    <thead>
+      <tr>
+        <th>First column</th>
+        <th>Second column</th>
+        <th>Third column</th>
+        <th>Fourth column</th>
+      </tr>
+      <tr>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>E-mail</th>
+        <th>Tel Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Max</td>
+        <td>Fisher</td>
+        <td>xyz@outlook.com</td>
+        <td>65932725</td>
+      </tr>
+      <tr>
+        <td>John</td>
+        <td>Goldy</td>
+        <td>zyx@outlook.com</td>
+        <td>66997252</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4">Result</td>
+      </tr>
+    </tfoot>
+  </table><br />
+  <b>Forms and Input fields</b><br />
+  <fieldset>
+    <legend>Name</legend>
+  </fieldset><br />
+  <form>
+    <p>
+      <label for="username">Username</label>
+      <input id="username" name="username" pattern="[a-zA-Z]+" required </p>
+      <button type="submit">Send</button>
+  </form>
+  <p>
+    <label for="Login">Login:</label>
+    <input id="login" name="user-login" type="text" required />
+  </p>
+  <form>
+    <p>
+      <label for="email">E-mail:</label>
+      <input id="email" name="user-email" type="email" placeholder="Write your email here" inputmode="email" required />
+    </p>
+    <p>
+      <button type="submit">Send</button>
+    </p>
+    <p>
+      <label for="user-profile">Link to any social network:</label>
+      <input id="user-profile" name="user-profile" type="url" />
+    </p>
+    <p>
+      <button type="submit">Send</button>
+    </p>
+    <p>
+      <label for="user-phone">Tel number</label>
+      <input id="user-phone" name="user-phone" type="tel" inputmode="tel" required />
+    </p>
+    <p>
+      <button type="submit">Confirm</button>
+    </p>
+    <p>
+      <label for="search-query">Enter search query</label>
+      <input id="search-query" name="search-query" type="search" />
+    </p>
+    <p>
+      <button type="submit">Search</button>
+    </p>
+    <p>
+      <label for="user-age">Your age:</label>
+      <input id="user-age" name="user-age" type="number" required />
+    </p>
+    <p>
+      <button type="submit">Confirm</button>
+    </p>
+    <p>
+      <label for="user-password">Password:</label>
+      <input id="user-password" name="user-password" type="password" minlength="8" maxlength="12" required />
+    </p>
+    <p>
+      <button type="submit">Log in</button>
+    </p>
+    <p>
+      <label for="prefer-color">Choose youre color:</label>
+      <input id="prefer-color" name="prefer-color" type="color" />
+    </p>
+    <p>
+      <label for="user-documents">Attach your file</label>
+      <input id="user-documents" name="user-documents" type="file" multiple />
+    </p>
+    <p>
+      <button type="submit">Send</button>
+    </p>
+    <p>
+      <label for="agreement">I agree with that:</label>
+      <input id="agreement" name="agreement" type="checkbox" value="agreement" />
+    </p>
+    <p>
+      <label for="agreement-total">I agree with that:</label>
+      <input id="agreement-total" name="agreement-total" type="checkbox" value="agreement-total" checked />
+    </p>
+  </form>
+  <form>
+    <fieldset>
+      <legend>Your Gender</legend>
+      <p>
+        <input type="radio" id="male" name="gender" value="male" checked />
+        <label for="male">Man</label>
+      </p>
+      <p>
+        <input type="radio" id="female" name="gender" value="female" />
+        <label for="female">Female</label>
+      </p>
+      <br />
+    </fieldset>
+    <p>
+      <label for="sound-volume">Sound volume</label>
+      <input type="range" id="sound-volume" name="sound-volume" min="1" max="100" />
+      <br />
+      <label for="comment" inputmode="text"> Yore comment:</label>
+      <textarea id="comment" name="user-comment" spellcheck="true" wrap="soft"></textarea><br />
+      <br />
+      <label for="city">Your city</label>
+      <select id="city" name="user-city" required>
+        <option disbled value="" selected></option>
+        <option value="riga">Riga</option>
+        <option value="new-york">New-York</option>
+        <option value="paris">Paris</option>
+        <option value="glasgow">Glasgow</option>
+      </select>
+      <br />
+      <button>Send</button>
+    </p>
+  </form>
+  <!--HTML5
+  <header>Used to highlight the top of a page, section or any other block.
+  <footer> Serves to highlight the bottom of the page (footer), as well as the bottom of a section or any other block.
+  <main> Used to highlight the main part of the page, located between the header and footer.
+  <section> Used to isolate independent functional blocks.It can be nested.
+  <article> Used to highlight a self-sufficient block of some specific entity.
+  <aside> Used for sidebars on the site (filters),but not required.
+  <nav> Used to highlight navigation blocks.(Menu with links in the header.)
+    1)Website - "Can i use"
+    2)Website - "Caninclude"
+    2)Website - "W3C"
+  -->
+  <div class="custom-buttons">
+    <button class="hover-effect" alt="effect">Hover effect</button>
+    <button class="focus-effect" alt="effect">Focus effect</button>
+    <button class="focus-visible-effect" alt="effect">Focus-visible effect</button>
+    <button class="active-effect" alt="effect">Active effect</button>
+  </div>
+  <hr />
+  <br />
+  <button disabled>Disabled button</button>
+  <hr />
+  <hr />
+  <label class="checkbox">
+    <input class="checkbox-control visually-hiden" id="checkbox1" type="checkbox" />
+    <span class="checkbox-emulator"></span>
+    <span class="checkbox-lable">Checkbox-1</span>
+  </label>
+</body>
+
+</html>
