@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<title>New User</title>
+		<link rel="shortcut icon" href="images/logo.svg">
+		<link rel="stylesheet" href="jauns_lietotajs_style.css">
+		<script src="https://kit.fontawesome.com/ca0dbd0040.js" crossorigin="anonymous"></script>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<div class="header">
+			<img src="images/logo.svg" class="logo">
+			<ul class="lang-choice">
+				<li><a href="jauns_lietotajs_dir_lv.html">LV</a></li>
+				<li><a href="" style="color: #66FCF1; text-decoration: underline;">ENG</a></li>
+				<li><a href="jauns_lietotajs_dir_ru.html">RU</a></li>
+				<li><i class="fa-solid fa-globe"></i></li>
+			</ul>
+		</div>
+		<div>
+			<form>
+				<div class="stretch">
+					<div style="transform: translate(-28px, 0);">
+						<div><label for="first-name" style="margin-bottom: 5px;">First Name:</label></div>
+						<div><input type="text" id="first-name" name="first-name"></div>
+						<div><label for="last-name" style="margin-bottom: 5px;">Last Name:</label></div>
+						<div><input type="text" id="last-name" name="last-name"></div>
+						<div><label for="education" style="margin-bottom: 5px;">Education degree:</label></div>
+						<div><select name="education" id="education" onclick="loseFocus()" required>
+								<option value="">Choose</option>
+								<option value="principal">Principal</option>
+								<option value="dean">Dean</option>
+							</select>
+							<i id="arrow" class="fa-solid fa-angle-down"></i>
+						</div>
+						<div style="text-align: right; margin-right: 16px"><button type="submit">Save</button></div>
+					</div>
+					<div>
+						<div><label for="institution" style="margin-bottom: 5px;">Educational institution:</label></div>
+						<div><input type="text" id="institution" name="institution"></div>
+						<div><label for="mail" style="margin-bottom: 5px;">E-mail address:</label></div>
+						<div><input type="text" id="mail" name="mail"></div>
+						<div><label for="password" style="margin-bottom: 5px;">Password:</label></div>
+						<div><input type="text" id="password" name="password"></div>
+						<div style="text-align: left;"><button type="submit">Cancel</button></div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<script>
+			// Universitate -> Macibu iestade
+			var element = document.getElementById("education");
+			element.addEventListener("mousedown", onMouseDown);
+			var focused = 0;
+			function onMouseDown() {
+				if (element === document.activeElement) {
+					focused = 1;
+				}
+			}
+			function loseFocus() {
+				if (focused === 1) {
+					element.blur();
+					focused = 0;
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,129 @@
+/*Different browsers style the same elements differently. 
+  This seems inconvenient and everything needs to be standardized
+  and done as in the layout. One solution is to use the selector (*) 
+  and set some properties to zero. However, using this selector (*), 
+  the properties of those tags that we do not need are zeroed. 
+  It is better to use other people's point reset styles, 
+  where zeroing properties are applied precisely only to those tags 
+  that need them. One example is reset by Eric Meyer(meyerweb.com). 
+  Second variant is to use Normolize.css. 
+  (Download and copy to your code and watch 
+  Indents, list markers, and borders remain. 
+  But we have brought the initial styles 
+  of all elements to a single form for all browsers. 
+  With this approach, we can guarantee that 
+  all browsers will be more or less the same. 
+  This normalization includes fixes for various browser bugs and shortcomings. 
+  There are comments as well.)*/
+/* Custom style reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* We remove the internal padding on the left for list tags 
+that have a class attribute. */
+
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/* We remove the outer padding from the body and two other tags 
+that have a class attribute. */
+
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/* We remove the outer vertical indents for the necessary tags 
+that have a class attribute.
+ */
+
+:where(h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol,
+  dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/* We remove the standard marker from a bulleted list 
+that has a class attribute.
+ */
+:where(ul[class]) {
+  list-style: name;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/* We make working with images and videos easier.*/
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Inherited font properties for input fields.*/
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+  It will be useful in most situations 
+  (when, for example, you need to "press" the footer to the bottom of the site)
+  */
+  height: 100%;
+  /**
+  Smooth scroll
+  */
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+  It will be useful in most situations 
+  (when, for example, you need to "press" the footer to the bottom of the site)
+  */
+  min-height: 100%;
+  /**
+  Unified leading
+  */
+  line-height: 1.5;
+}
+
+/*
+  We remove all animations and transitions for people 
+  who prefer not to use them.
+  */
+@media (prefers-reduced-motion:reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

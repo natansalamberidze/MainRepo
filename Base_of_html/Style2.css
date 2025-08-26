@@ -1,0 +1,141 @@
+b {
+  color: red;
+}
+
+legend {
+  color: rgb(236, 11, 4);
+}
+
+table {
+  border: 1px solid black;
+}
+
+body {
+  background-color: bisque;
+}
+
+th:first-child {
+  color: rgb(48, 247, 9);
+}
+
+th:nth-child(even) {
+  /*countable*/
+  color: aquamarine;
+}
+
+
+/*th:nth-child(odd) {
+  color: aquamarine;
+} uncountable*/
+
+th:nth-child(3) {
+  /*countable*/
+  color: rgb(255, 9, 202);
+}
+
+td:nth-last-child(2) {
+  /*countable*/
+  color: rgb(8, 12, 245);
+}
+
+td:nth-child(2n) {
+  /*countable*/
+  color: rgb(8, 36, 114);
+}
+
+/*nth-child better.io- nth-child Selector Tester*/
+
+[alt*="effect" i] {
+  color: white;
+  background: #0258c2;
+  border-color: #06bae7;
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 7px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+
+button {
+  user-select: none;
+  /* pointer-events: none; */
+  /* pointer-events: cancel pointer for any element (button, field)*/
+}
+
+button:hover {
+  color: white;
+  background: #70001c;
+  border-color: #f70707;
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 7px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.hover-effect:hover {
+  background-color: #06bae7;
+  border-color: #06bae7;
+}
+
+.focus-effect:focus {
+  box-shadow: 0 0 10px 10px rgb(3, 247, 23);
+}
+
+.custom-buttons:hover {
+  background: #f10606;
+  border-color: #000000;
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 7px;
+  padding: 10px 15px;
+}
+
+.focus-visible-effect:focus-visible {
+  box-shadow: 0 0 10px 10px rgb(27, 3, 252);
+}
+
+.active-effect:active {
+  background-color: yellow;
+  color: rgb(238, 112, 9);
+}
+
+.checkbox {
+  display: flex;
+  column-gap: 0.5em;
+  user-select: none;
+}
+
+.checkbox-control:not(:checked)+.checkbox-emulator::after {
+  display: none;
+}
+
+.checkbox-emulator {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 1em;
+  height: 1em;
+  border: 2px solid lightskyblue;
+  border-radius: 5px;
+  background-color: paleturquoise;
+}
+
+.checkbox-emulator::after {
+  content: "ツ";
+  color: green;
+}
+
+.visually-hiden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
