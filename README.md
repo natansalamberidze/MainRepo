@@ -1,1 +1,1 @@
-Here you can find SQL codes that were used by the author in practical works. 
+Here you can find codes that the author has used in practice.
