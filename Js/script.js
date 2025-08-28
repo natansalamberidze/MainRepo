@@ -269,7 +269,7 @@ console.log(a + b)
 
 logSum(5, 10)
 
-// callback functions
+// Callback functions
 
 const logMassage = (actionBefore, actionAfter) => {
   actionBefore()
@@ -283,4 +283,62 @@ logMassage(
   () => console.log('before'),
   () => console.log('after')
 )
+
+// Objects
+
+const objectUser = {
+  login: 'user123',
+  password: 'q',
+  'registration date': '2023-01-01',
+  "last-auth": '2023-10-10',
+
+  age: 26,
+  isAdult: true,
+  job: null,
+  kids: undefined,
+  address: {
+    city: 'Latvia',
+    town: 'Riga',
+  },
+  sayHello: () => console.log("Hello! It's me")
+}
+
+objectUser.sayHello() // Output: "Hello! It's me"
+
+const helloFunction = objectUser.sayHello;
+helloFunction(); // Output: "Hello! It's me"
+
+// Delete property from the object
+
+
+delete objectUser['registration date']
+
+console.log(objectUser)
+
+// const propName = prompt('property with which name to add object?')
+// const propValue = prompt('property with which value to add object?')
+
+// const ob = {
+//   [propName]: propValue, 
+// }
+
+// console.log(ob)
+
+// Check existence of property in object
+
+const user1 = {
+  username: 'Nathan',
+  age: 26
+}
+
+console.log('26' in user1) // false
+console.log('age' in user1) // true
+
+for (const key in user1) {
+  console.log(key)
+}
+
+for (const propKey in user1) {
+  console.log(user1[propKey])
+}
 
