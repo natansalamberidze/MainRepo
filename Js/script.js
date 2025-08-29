@@ -342,3 +342,244 @@ for (const propKey in user1) {
   console.log(user1[propKey])
 }
 
+// Flat or shallow objects comparison
+
+// const obj1 = {
+//   name: 'Nathan',
+//   age: 26,
+//   }
+
+// const obj2 = {
+//   name: 'Nathan',
+//   age: 26,
+// }
+
+// const areObjectsEqual = (obj1,obj2) => {
+//   const keys1 = Object.keys(obj1)
+//   const keys2 = Object.keys(obj2)
+//   console.log('Length keys1:', keys1.length)
+//   console.log('Length keys2:', keys2.length)
+
+//   if (keys1.length !== keys2.length) {
+//     return false
+//   }
+
+//   for (const key in obj1) {
+//     if (obj1[key] !== obj2[key]){
+//       return false
+//     }
+//   }
+
+//   return true
+// }
+
+// console.log(
+//   'Are objects equal? ',
+//   areObjectsEqual(obj1, obj2)
+// )
+
+// Deep objects comparison with recursion
+
+const obj1 = {
+  name: 'Nathan',
+  age: 26,
+  address: {
+    city: 'Riga',
+    street: 'Brivibas',
+  },
+  }
+
+const obj2 = {
+  name: 'Nathan',
+  age: 26,
+    address: {
+    city: 'Riga',
+    street: 'Brivibas',
+  },
+}
+
+const areObjectsEqual = (obj1,obj2) => {
+  const keys1 = Object.keys(obj1)
+  const keys2 = Object.keys(obj2)
+  console.log('Length keys1:', keys1)
+  console.log('Length keys2:', keys2)
+
+  if (keys1.length !== keys2.length) {
+    return false
+  }
+
+  for (const key in obj1) {
+    const value1 = obj1[key]
+    const value2 = obj2[key]
+    const areValuesObjects = 
+      typeof value1 === 'object' && typeof value2 === 'object' 
+
+      if (areValuesObjects) {
+        return areObjectsEqual(value1, value2)
+      }
+
+    if (value1 !== value2){
+      return false
+    }
+  }
+
+  return true
+}
+
+console.log(
+  'Are objects equal? ',
+  areObjectsEqual(obj1, obj2)
+)
+
+// Clone objects
+
+const object1 = { name: 'Nathan'}
+const object2 = { ...object1 } // spread operator 
+
+object2.name = 'Harry'
+
+console.log('Object1', object1)
+console.log('Object2', object2)
+
+// Merging of objects
+
+const objectA = { name: 'Nathan'}
+const objectB = { age: 30}
+const objectC = { name: 'Max', isDeveloper: true}
+
+const user2 = Object.assign({}, objectA, objectB, objectC) // properties of objectC will overwrite properties of objectA
+
+console.log(user2)
+
+// Optional chaning operator (?.)
+
+const user3 = {
+  name: 'Nathan',
+  age: 26,
+  address: {
+    city: 'Riga',
+    zipcode: 'LV-4538'
+  }
+}
+
+console.log(user3?.address?.city) // Riga
+console.log(user3?.job?.title) // undefined
+console.log('Any text')
+
+// Optional chaning with functions
+
+const guest1 = {
+  name: 'Max',
+  age: 30,
+  orderInfo: {
+    roomType: 'Lux',
+    stayDates: {
+      checkIn: '2023-10-01',
+      checkOut: '2023-10-10'
+    }
+  }
+}
+
+const guest2 = {
+  name: 'Nathan',
+  age: 26,
+}
+
+const logGuestInfo = (guest) => {
+  console.log(
+    `Guestname: ${guest.name}
+    Age: ${guest.age}
+    CheckOut: ${guest.orderInfo?.stayDates?.checkOut ?? 'not specified'}`
+  )
+}
+
+logGuestInfo(guest1)
+logGuestInfo(guest2)
+
+// Syntax of destructured assignment
+
+const guest3 = {
+  name: 'Nathan',
+  age: 26,
+  isDeveloper: true,
+}
+
+const { name: GuestName, 
+    age: guestAge,
+    isDeveloper,
+    address
+} = guest3
+
+console.log('Name:', GuestName)
+console.log('Age:', guestAge)
+console.log('isDeveloper:', isDeveloper)
+console.log('Address:', address) // undefined
+
+
+
+const logAddress = ({ 
+  city, 
+  street, 
+  house, 
+  apartment }) => {
+
+  console.log(
+    `Address:
+    City: ${city}, street: ${street},
+    House Number: ${house}, apartment: ${apartment}
+    `)
+  }
+
+logAddress({
+  city: 'Riga',
+  street: 'Brivibas',
+  house: 45,
+  apartment: 12
+})
+
+const user4 = {
+  username: 'Nathan',
+  age: 26,
+  city: 'Riga',
+}
+
+const user5 = {
+  username: 'Bill',
+  age: 30,
+}
+
+const { city ='unknown' } = user5
+
+console.log(city)
+
+const user6 = {
+  eyeColor: 'blue',
+}
+
+const { eyeColor = 'brown' } = user6
+
+console.log('eyeColor', eyeColor)
+
+// Rest operator (...)
+
+const logUser = (user) => {
+  const { name, age, city, ...otherInfo } = user // rest operator
+
+  console.log(`
+    UserName: ${name},
+    Age: ${age},
+    City: ${city}
+  `)
+
+  console.log('Other info:', otherInfo)
+
+}
+
+logUser({
+  name: 'Nathan',
+  age: 26,
+  city: 'Riga',
+  company: 'Google',
+  jobPost: 'Frontend Developer'
+})
+
