@@ -438,7 +438,7 @@ const object2 = { ...object1 } // spread operator
 
 object2.name = 'Harry'
 
-console.log('Object1', object1)
+console.log('Object1', object1) 
 console.log('Object2', object2)
 
 // Merging of objects
@@ -550,7 +550,7 @@ const user5 = {
 
 const { city ='unknown' } = user5
 
-console.log(city)
+console.log(city) // unknown
 
 const user6 = {
   eyeColor: 'blue',
@@ -583,3 +583,24 @@ logUser({
   jobPost: 'Frontend Developer'
 })
 
+// this keyword 
+
+const user7 = {
+  name: 'Nathan',
+  age: 26,
+  logThis: function() {
+    console.log('this in the methods bodey of object user7', this)
+    console.log('this.name', this.name)
+  },
+
+  address: {
+    city: 'Riga',
+    zipcode: 'LV-4538',
+    logInnerThis: function() {
+      console.log('this in the methods bodey of object address', this)
+    },
+  },
+}
+
+user7.logThis()
+user7.address.logInnerThis()
