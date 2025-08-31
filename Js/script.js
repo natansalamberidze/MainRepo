@@ -589,15 +589,15 @@ const user7 = {
   name: 'Nathan',
   age: 26,
   logThis: function() {
-    console.log('this in the methods bodey of object user7', this)
-    console.log('this.name', this.name)
+    console.log('this in the method body of an object user7', this)
+    console.log('this.name -', this.name)
   },
 
   address: {
     city: 'Riga',
     zipcode: 'LV-4538',
     logInnerThis: function() {
-      console.log('this in the methods bodey of object address', this)
+      console.log('this in the method body of an object address', this)
     },
   },
 }
