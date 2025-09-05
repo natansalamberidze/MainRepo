@@ -378,7 +378,7 @@ for (const propKey in user1) {
 //   areObjectsEqual(obj1, obj2)
 // )
 
-// Deep objects comparison with recursion
+// Deep objects comparison
 
 const obj1 = {
   name: 'Nathan',
