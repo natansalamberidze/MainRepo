@@ -415,7 +415,11 @@ const areObjectsEqual = (obj1,obj2) => {
       typeof value1 === 'object' && typeof value2 === 'object' 
 
       if (areValuesObjects) {
-        return areObjectsEqual(value1, value2)
+        if (!areObjectsEqual(value1, value2)) {
+          return false
+        } else {
+          continue
+        }
       }
 
     if (value1 !== value2){

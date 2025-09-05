@@ -1,3 +1,5 @@
+
+
 const user1 = { name: 'Nathan'}
 const user2 = { name: 'John'}
 
@@ -14,25 +16,29 @@ user2.logName = logInfo
 user1.logName() // this: user1, this.name: 'Nathan'
 user2.logName() // this: user2, this.name: 'John'
 
+console.log(user1.name [0])
+console.log(user2.name [3])
+
+
 // Simple calculatorlculator
 
-const calculator = {
-  read() {
-    this.a = +prompt('First number:', 0)
-    this.b = +prompt('Second number:', 0)
-  },
-  sum() {
-    return this.a + this.b
-  },
-  mul() {
-    return this.a * this.b
-  }
-};
+// const calculator = {
+//   read() {
+//     this.a = +prompt('First number:', 0)
+//     this.b = +prompt('Second number:', 0)
+//   },
+//   sum() {
+//     return this.a + this.b
+//   },
+//   mul() {
+//     return this.a * this.b
+//   }
+// };
 
-calculator.read()
-console.log('calcilator:', calculator)
-console.log( 'Sum = ' + calculator.sum() )
-console.log( 'Mul = ' + calculator.mul() )
+// calculator.read()
+// console.log('calcilator:', calculator)
+// console.log( 'Sum = ' + calculator.sum() )
+// console.log( 'Mul = ' + calculator.mul() )
 
 // Stairs
 
@@ -117,5 +123,121 @@ const numberAsString = '100.5px'
 // console.log ('String to number:', +numberAsString) // 100
 // console.log ('String to number:', Number(numberAsString)) // 100
 
-console.log ('parseInt:', parseInt(numberAsString)) // 100
-console.log ('parseFloat:', parseFloat(numberAsString)) // 100.5
+console.log (
+  'parseInt:', parseInt(numberAsString)
+) // 100
+console.log (
+  'parseFloat:', parseFloat(numberAsString
+  )) // 100.5
+
+// at, (toLowerCase, toUpperCase), (trim, trimStart, trimEnd), includes, endsWith, (substring, slice), repeat, replace
+
+const guest3 = {
+  surname: ' SmIth JoHnSoN '
+}
+
+console.log(guest3.surname.at(-2))  // o
+console.log(guest3.surname.toLowerCase())  // smith johnson
+console.log(guest3.surname.toUpperCase()) // SMITH JOHNSON
+
+
+const messageFormatted = guest3.surname.trim()
+const messageStartFormatted = guest3.surname.trimStart()
+const messageEndFormatted = guest3.surname.trimEnd() 
+
+console.log('Trimmed message:', messageFormatted) // 'SmIth JoHnSoN'
+console.log('Trimmed start message:', messageStartFormatted) // 'SmIth JoHnSoN '
+console.log('Trimmed end message:', messageEndFormatted) // ' SmIth JoHnSoN'
+
+console.log(
+  guest3.surname.indexOf('Sm') !== -1
+) // true
+
+console.log(
+  guest3.surname.indexOf('dsvjsdnvjksdnv') !== -1
+) // false
+
+console.log(guest3.surname.includes('Sm', 0)) // true
+console.log(guest3.surname.includes('Jo', 9)) // false
+
+console.log(guest3.surname.endsWith('n', 2)) // false
+console.log(guest3.surname.endsWith('n', 16)) // true
+
+console.log(guest3.surname.substring(1, 6)) // SmIth
+
+console.log(guest3.surname.slice(1, 6)) // SmIth
+console.log(guest3.surname.slice(-8, -1)) // JoHnSoN
+
+console.log('Repeat:', guest3.surname.repeat(3)) // ' SmIth JoHnSoN  SmIth JoHnSoN  SmIth JoHnSoN '
+
+console.log('Replace:', guest3.surname.replace('SmIth', 'Black')) // ' Black JoHnSoN '
+console.log('ReplaceAll:', guest3.surname.replaceAll('S', 'SS')) // ' SSmIth JoHnSSoN '
+
+// Check value in the String (Ex!)
+
+// const value = prompt('Enter a name:')
+
+// const clearValue = value.trim().toLowerCase()
+
+// if (clearValue.length === 0) {
+//   alert('You did not enter a name, please try again') 
+// }
+
+// if (clearValue.includes('admin') || clearValue.includes('administrator')) {
+//   alert("You can't use this name")
+// }
+
+
+// Massives
+
+const arr = [
+  'Apple',
+  100,
+  true,
+  { name: 'John'},
+  () => { console.log('Hello!') },
+  [false, false, false]
+]
+
+console.log('Array:', arr)
+console.log('First element:', arr[0]) // Apple
+console.log('Fourth element:', arr[3]['name']) // John
+arr[4]() // Hello!
+console.log('Sixth element:', arr[5][2]) // false
+
+arr[0] = 'Orange'
+arr[6] = 'New element'
+console.log('Changed first element:', arr) // ['Orange', 100, true, {name: 'John'}, ƒ, Array(3)]
+
+// Method at can be used in the massive
+console.log('Last element:', arr.at(-1)) // New element
+
+// Inserting new element at the beginning and at the end of the massive with unshift and push
+// But sometimes this is not usefull in the real life. Better to add elements in the end of the massive
+arr.unshift('First element added with unshift')
+arr.push('Last element added with push')
+
+
+// Delete last element in the massive with pop
+console.log('Deleted last element:', arr.pop()) // New element
+
+
+// Delete first element in the massive with shift
+console.log('Deleted first element:', arr.shift()) // First element added with unshift
+
+
+// slice method - creates a new array by extracting a section of an existing array
+const arr2 = [1, 2, 3, 4, 5]
+const arr3 = arr2.slice(1, 4)
+
+console.log('arr2:', arr2) // [1, 2, 3, 4, 5]
+console.log('arr3 (slice of arr2):', arr3) // [2, 3, 4]
+
+// Combine two massives with concat or with spread operator
+
+const totalArr = arr2.concat(arr3)
+console.log('Combined arr2 and arr3:', totalArr) // [1, 2, 3, 4, 5, 2, 3, 4]
+
+const totalArr2 = [...arr2, ...arr3]
+console.log('Combined arr2 and arr3 with spread operator:', totalArr2) // [1, 2, 3, 4, 5, 2, 3, 4]
+
