@@ -233,11 +233,172 @@ const arr3 = arr2.slice(1, 4)
 console.log('arr2:', arr2) // [1, 2, 3, 4, 5]
 console.log('arr3 (slice of arr2):', arr3) // [2, 3, 4]
 
-// Combine two massives with concat or with spread operator
+// Combine two arrays with concat or with spread operator
 
 const totalArr = arr2.concat(arr3)
 console.log('Combined arr2 and arr3:', totalArr) // [1, 2, 3, 4, 5, 2, 3, 4]
 
 const totalArr2 = [...arr2, ...arr3]
 console.log('Combined arr2 and arr3 with spread operator:', totalArr2) // [1, 2, 3, 4, 5, 2, 3, 4]
+
+// Array comparison
+
+const arr1 = ['A', 'B', 'C', []]
+const arr4 = ['A', 'B', 'C', []]
+
+const areArraysEqual = (array1, array2) => {
+  if (array1.length !== array2.length) {
+    return false
+  }
+
+  for (let i = 0; i < array1.length; i++) {
+    const value1 = array1[i]
+    const value2 = array2[i]
+
+    const areValuesArrays = 
+      Array.isArray(value1) && Array.isArray(value2)
+
+      if (areValuesArrays) {
+        if (!areArraysEqual (value1 , value2)) {
+          return false
+        } else {
+          continue
+        }
+      }
+    if (value1 !== value2) {
+      return false
+    }
+  }
+  return true
+}
+
+console.log('Are arr1 and arr4 equal:', areArraysEqual(arr1, arr4)) // true
+
+// Methods for work with array!
+// forEach(Iterate through the array)
+// map(To go through, modify by changing each of its elements and return a new array)
+// filter (To filter array with condition)
+// find(To find concrete element in the array with condition)
+// findIndex (To find index of concrete element in the array)
+// reduce(Applies the reducer function to each element of the array (from left to right), returning a single result value)
+// reduceRight(Same as reduce, but from right to left)
+// some(Deep value chacking in the array), 
+// every(Check every element in the array), 
+// indexOf(lastIndexof), 
+// includes(To check value in the array)
+// reverse(Reverses the order of the elements in the array)
+// sort(Sorts the elements of an array in place and returns the sorted array)
+
+console.log(
+  arr1.findIndex((letter) => {
+    if(letter === 'B')
+      return true
+    }
+  )
+) // 1
+
+console.log(arr4.includes('C', 2)) // true
+
+const users = [
+  {
+    name: 'John',
+    age: 25,
+    city: 'Riga'
+  },
+    {
+    name: 'Bob',
+    age: 30,
+    city: 'Riga'
+  },
+    {
+    name: 'Max',
+    age: 20,
+    city: 'Cesis'
+  },
+]
+
+const userFromRiga = users.find((user) => user.city === 'Riga')
+
+const filteredUsers = users.filter(({city, age}) => {
+  return city === 'Riga' || age >= 25
+})
+console.log('User from Riga:', filteredUsers) // [{name: 'John', age: 25, city: 'Riga'}, {name: 'Bob', age: 30, city: 'Riga'}]
+
+// Map method
+
+const usersFormated = users.map((user) => {
+  return `${user.name}, ${user.age} years, from ${user.city}`
+})
+
+console.log(usersFormated) // ['John, 25 years, from Riga', 'Bob, 30 years, from Riga', 'Max, 20 years, from Cesis']
+
+// Average age of all users in the array
+
+
+const averageAge = users.reduce((sum, {age}) => sum + age, 0)
+
+console.log('Average age of all users:', averageAge / users.length) // 25
+
+// Reverse method
+
+const reversedUsers = [...users].reverse()
+
+console.log('Reversed users:', reversedUsers) // [{name: 'Max', age: 20, city: 'Cesis'}, {name: 'Bob', age: 30, city: 'Riga'}, {name: 'John', age: 25, city: 'Riga'}]
+
+// Sort method
+
+const numbers = [5, 2, 1, 4, 3]
+
+const sortedNumbers = [...numbers].sort((a, b) => a - b)
+
+console.log('Sorted numbers:', sortedNumbers) // [1, 2, 3, 4, 5]
+
+// Map and Set collections()
+
+const data = new Map()
+
+data.set('name', 'John')
+data.set('age', 25)
+
+console.log('Keys', data.keys()) // MapIterator {'name', 'age'}
+console.log('Values:', data.values()) // MapIterator {'John', 25}
+console.log('Entries:', data.entries()) // MapIterator {'name' => 'John', 'age' => 25}
+
+// For of cycle
+
+for (const key of data.keys()) {
+  console.log('Key:', key)
+}
+
+for (const value of data.values()) {
+  console.log('Value:', value)
+}
+
+for (const entry of data.entries()) {
+  console.log('Entry:', entry)
+}
+
+// Convert an object into a collection
+
+const obj = {
+  name: 'John',
+  age: 25
+}
+
+const objToMap = new Map(Object.entries(obj))
+
+objToMap.forEach((value, key) => {
+  console.log(`${key}: ${value}`)
+}) // name: John, age: 25
+
+// Convert an map collection into a object
+
+const map = new Map([
+  ['name', 'John'],
+  ['age', 25],
+])
+
+const mapToObj = Object.fromEntries(map)
+
+console.log('Map to object:', mapToObj) // {name: 'John', age: 25}
 
