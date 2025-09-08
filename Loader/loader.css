@@ -1,0 +1,84 @@
+:root {
+  --night: #464040;
+  --lavender: #d614d6;
+  --yellow: #c75cf9;
+  --green: #18a31d;
+
+}
+
+body {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 32px;
+  font-weight: 800;
+  height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+  justify-content: center;
+  align-items: center;
+  color: var(--yellow);
+  background-color: var(--night);
+  transition: all 0.3s ease-in-out;
+}
+.progress-circle{
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  outline: 1px solid var(--yellow);
+  outline-offset: -1px;
+}
+.progress-circle::after,
+.number{
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+.progress-circle::after{
+  content:'';
+  width: 110px;
+  height: 110px;
+  border-radius: inherit;
+  outline: inherit;
+}
+.circle{
+  stroke-dasharray: 410;
+  stroke-dashoffset: 410;
+  transform: rotate(-90deg);
+  animation: bar-fill 9500ms linear forwards;
+  animation-iteration-count: 1;
+}
+@keyframes bar-fill {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.progress-done {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    background: linear-gradient(100deg, var(--green));
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: bold;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    z-index: 100;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.progress-done.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+    bottom: -45px;
+}
+
