@@ -402,3 +402,6 @@ const mapToObj = Object.fromEntries(map)
 
 console.log('Map to object:', mapToObj) // {name: 'John', age: 25}
 
+// DOM (Document Object Model)
+console.log(document.body)
+
