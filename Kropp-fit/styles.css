@@ -321,6 +321,13 @@ h1, h2, h3, h4, h5, h6 {
   font-size: clamp(24px, 3.12vw, 60px ); /* 60/1920*100 = 3.125 ~ 3.12 */
 }
 
+.section-description {
+  font-size: 20px;
+  line-height: 1.65;
+  text-transform: uppercase;
+  color: var(--color-light);
+}
+
 .backdrop-title {
   position: relative;
   z-index: 2;
@@ -652,7 +659,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   align-items: center;
   padding: 150px 30px;
-  background: url('./images/join-us-bg.jpg') center/cover no-repeat var(--color-dark-alternate);
+  background: url('./images/join-us-bg-copy.jpg') center/cover no-repeat var(--color-dark-alternate);
 }
 
 .join-us-video-play-button {
@@ -730,13 +737,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 52px;
 }
 
-.join-us-form-subtitle {
-  font-size: 20px;
-  line-height: 1.65;
-  text-transform: uppercase;
-  color: var(--color-light);
-}
-
 .join-us-form-input {
   max-width: 400px;
 }
@@ -777,7 +777,36 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 37px;
 }
 
+.family {
+  background-color: var(--color-dark);
+}
 
+.family-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 7px;
+  padding-top: 132px;
+  padding-bottom: 62px;
+  text-align: center;
+}
+
+.family-description {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.family-body {
+  display: flex;
+  justify-content: center;
+  column-gap: 26px;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll
+}
+
+.family-img {
+  scroll-snap-align: start;
+}
 
 @media (max-width: 1919px) {
   .motivation-card-image {
@@ -836,6 +865,10 @@ h1, h2, h3, h4, h5, h6 {
 
   .join-us-title:not(:last-child) {
     margin-bottom: 80px;
+  }
+
+  .family-img {
+    height: 360px;
   }
 
 }
@@ -905,7 +938,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 40px;
   }
 
-  .join-us-form-subtitle {
+  .section-description {
     text-align: center;
     font-size: 16px;
   }
@@ -922,5 +955,18 @@ h1, h2, h3, h4, h5, h6 {
 
   .location-description:not(:last-child) {
     margin-bottom: 15px;
+  }
+
+    .family-img {
+    height: 180px;
+  }
+
+  .family-header {
+    padding-top: 80px;
+    padding-bottom: 50px
+  }
+
+  .family-body {
+    column-gap: 12px;
   }
 }
