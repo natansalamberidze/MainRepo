@@ -314,7 +314,81 @@
         >
       </div>
     </section>
-  </main>
+    <section class="calculate">
+      <div class="calculate-inner container">
+        <div class="calculate-body">
+          <h2 class="calculate-title title-medium backdrop-title" data-title="BMI">
+            Input your BMI
+          </h2>
+          <div class="calculate-description">
+            <p>Duo graece ponderum ne, ei mel aliquando. Pro te tamquam nonumes, nam no nemore epicurei</p>
+          </div>
+          <form class="calculate-form">
+            <div class="calculate-form-body">
+              <label class="visually-hidden" for="height">Height</label>
+              <input class="calculate-input input" type="number" id="height" placeholder="Height / cm">
+              <label class="visually-hidden" for="weight">Weight</label>
+              <input class="calculate-input input" type="number" id="weight" placeholder="Weight / kg">
+              <label class="visually-hidden" for="age">Age</label>
+              <input class="calculate-input input" type="number" id="age" placeholder="Age">
+              <label class="visually-hidden" for="gender">Gende</label>
+              <select class="calculate-input input" id="gender" required>
+                <option value="" disabled selected>Gender:</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+              <label class="visually-hidden" for="activity-factor">Activity factor</label>
+              <select class="calculate-input input wide" id="activity-factor" required>
+                <option value="" disabled selected>Select an activity factor:</option>
+                <option value="maxpump">Maxpump</option>
+                <option value="aron gym">Aron gym</option>
+                <option value="fit & tone">Fit & tone</option>
+                <option value="forza">Forza</option>
+                <option value="balance fitness">Balance fitness</option>
+                <option value="body sculpt">Body sculpt</option>
+              </select>
+            </div>
+              <button class="calculate-button button transparent" type="submit">
+                Calculate
+              </button>
+          </form>
+        </div>
+        <div class="calculate-table-wrapper">
+          <table class="calculate-table">
+            <thead>
+              <tr>
+                <th>BMI</th>
+                <th>Weight status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Below 18.5</td>
+                <td>Underweight</td>
+              </tr>
+              <tr>
+                <td>18.5 - 24.9</td>
+                <td>Healthy</td>
+              </tr>
+              <tr>
+                <td>25.0 - 29.9</td>
+                <td>Overweight</td>
+              </tr>
+              <tr>
+                <td>30.0 - and Above</td>
+                <td>Obese</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">BMR Metabolic Rate / <b>BMI</b> Body Mass Index</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </section>
+    </main>
   
 
 </body>
